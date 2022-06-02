@@ -10,18 +10,15 @@ public:
         int ptr1=0, ptr2=s.size()-1;
         
         //loop until the second pointer be bigger than the first one
-        while(ptr1<ptr2){
+        while(ptr1<=ptr2){
             
             //if the two pointers meet, skip this letter -> assuming that it swapped with himself.
-            if(ptr1==ptr2){
-                continue;
-            }
+   
             //swap the two letters
-            else{
                 int temp=s[ptr1];
                 s[ptr1]=s[ptr2];
                 s[ptr2]=temp;
-            }
+            
             //move the pointers
             ptr1++,ptr2--;
         }
