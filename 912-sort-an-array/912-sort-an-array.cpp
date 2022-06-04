@@ -58,7 +58,8 @@ public:
 
     vector<int> sortArray(vector<int>& nums) {
         //calling the function divide, which contains the conquer function, too
-        divide(nums, 0, nums.size()-1);
+        int size=nums.size();
+        divide(nums, 0, size-1);
         return nums;
     }
 };
