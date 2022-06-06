@@ -8,9 +8,12 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+/*
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
+    //first solution
         //initialize a pointer points on the head, the size of the list with zero
         ListNode *traptr=head;
         int size=0;
@@ -34,5 +37,25 @@ public:
         }
         //return the next of the pointer, as it's required to return the one after the middle
         return traptr->next;
+    }
+};
+*/
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+    //second solution
+        //initialize two pointers
+        ListNode* fast=head, *slow=head;
+        
+        if(!head||!head->next){return head;}
+        
+        //move the fast one with two steps while the slow one with only one step
+        while(fast&&fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        //when fast reachs the last node, the slow will points on the second middle one
+        return slow;
     }
 };
