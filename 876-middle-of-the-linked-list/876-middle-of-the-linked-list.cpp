@@ -9,7 +9,7 @@
  * };
  */
 
-/*
+
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -39,8 +39,9 @@ public:
         return traptr->next;
     }
 };
-*/
 
+
+/*
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -59,3 +60,4 @@ public:
         return slow;
     }
 };
+*/
