@@ -32,17 +32,14 @@ public:
         curr=curr->next;
     }
         
-    //if there is a remaining nodes in either the first or the second list, connect it to the new list directly
-    //while moving with the two pointers, one on either first or second list and the second on the third new list
+    //if there is a remaining nodes in either the first or the second list, connect it to the new list directly, while moving with the two pointers
     if(l1){
         curr->next=l1;
         l1=l1->next;
-        curr=curr->next;
     }
     if(l2){
         curr->next=l2;
         l2=l2->next;
-        curr=curr->next;
     }
     //ignoring the first node value in the new list
     return dummy->next;
@@ -52,29 +49,29 @@ public:
     ListNode* sortList(ListNode* head) {
         //base case-> if there're no elements or just a one, return it
         if(!head||!head->next){return head;}
-        //initilize three pointers which are point on the head of the list
-        ListNode *temp=head, *slow=head, *fast=head;
+        //initilize two pointers, one points on the head, one points on the next node of the head
+        ListNode *slow=head, *fast=head->next;
         
         //move with the slow and the fast pointers, fast with two steps while the slow one with only one step
         //when the fast stops, the slow will be pointed on the middle of the list
         while(fast && fast->next){
-            temp=slow;
             slow=slow->next;
             fast=fast->next->next;
         }
+        //return the fast pointer back to the next of the slow one
+        fast=slow->next;
         //cut the list to be two separated lists
-        temp->next=NULL;
+        slow->next=NULL;
         
-        /*now, 'head'->head of list1, 'temp'->end of list1,'slow'->head of list2, 'fast'->end of list2
+        /*now, 'head'->head of list1, 'slow'->end of list1,'fast'->head of list2, 'NULL'->end of list2
         separate the whole major list to two minor lists to be:
-        left list: start->head, end->temp, right list: start->slow, end->fast
+        left list: start->head, end->slow, right list: start->fast, end->NULL
         
         recursive case-> do the same operations on the left and the right ones until reaching the base case, only one node remaining
-        */
-        ListNode *leftList=sortList(head);
-        ListNode *rightList=sortList(slow);
         
-        //return the resultant list after calling the merge method
-        return merge(leftList, rightList);
+        then, return the resultant list after calling the merge method
+        */
+
+        return merge(sortList(head), sortList(fast));
     }    
 };
