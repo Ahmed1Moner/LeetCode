@@ -13,16 +13,14 @@ class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
         //if it's an empty tree-> return null
-        if(!root)
-            return NULL;
+        if(!root)return NULL;
         //base case-> reach the desired element, return it
-        else if(root->val == val)
-            return root;
+        if(root->val == val)return root;
         //if the desired element smaller than the current node, search in its left
-        else if(val < root->val)
-            return searchBST(root->left, val);
+        else if(val < root->val)return searchBST(root->left, val);
         //if the desired element bigger than the current node, search in its right
-        else
-            return searchBST(root->right, val);
+        else return searchBST(root->right, val);
     }
 };
+
+  
