@@ -11,30 +11,7 @@
  */
 class Solution {
 public:
-    //case 1: getting the minimum value of the right side of the sub-tree-> inorder successor's data
-    TreeNode *minValueNode(TreeNode *root){
-        //initialize a traversal pointer
-        TreeNode *tra=root;
-        //keep traversing until getting the leaf node of the leaf side
-        while(tra && tra->left){
-            tra=tra->left;
-        }
-        //return this node
-        return tra;
-    }
-    
-    // //case 2: getting the maximum value of the left side of the sub-tree-> inorder presuccessor's data
-    // TreeNode *maxValueNode(TreeNode *root){
-    //     //initialize a traversal pointer
-    //     TreeNode *tra=root;
-    //     //keep traversing until getting the leaf node of the right side
-    //     while(tra && tra->right){
-    //         tra=tra->right;
-    //     }
-    //     //return this node
-    //     return tra;
-    // }
-    
+
     TreeNode* deleteNode(TreeNode* root, int key) {
         //empty tree-> return null or the root
         if(!root){return NULL;}
@@ -70,21 +47,23 @@ public:
             //we have main two methods: either calling getting the smallest value of the right side-> inorder succesor 
             //or the biggest value of the left side-> inorder presuccessor
             
-            //calling the case 1 function to get the min value of the right sub-tree
-            TreeNode *temp=minValueNode(root->right);
+            //case 1: getting the minimum value of the right side of the sub-tree-> inorder successor's data
+            TreeNode *temp=root->right;
+            while(temp->left)
+                temp=temp->left;
+            
+            //  //case 2: getting the maximum value of the left side of the sub-tree-> inorder presuccessor's data
+            // TreeNode *temp=root->left;
+            // while(temp->right)
+            //     temp=temp->right;
+            
             //copy its value to the root node data-> successor's data
             root->val=temp->val;
             //delete the whole right sub-tree-> delete the inorder successor
             root->right = deleteNode(root->right, temp->val);
-            
-            // //calling the case 2 function to get the max value of the left sub-tree
-            // TreeNode *temp=maxValueNode(root->left);
-            // //copy its value to the root node data-> presuccessor's data
-            // root->val=temp->val;
-            // //delete the whole left sub-tree-> delete the inorder presuccessor
-            // root->left = deleteNode(root->left, temp->val);
-            
+        
         }
         return root;
     }
 };
+
