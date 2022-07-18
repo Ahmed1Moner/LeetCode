@@ -1,15 +1,10 @@
 class Solution {
 public:
-    vector<int> runningSum(vector<int>& nums) {
-        //initialize a partial sum variable
-        int sum=0;
-        
+    vector<int> runningSum(vector<int>& nums) {        
         //loop over the whole array elements
-        for(int i=0;i<nums.size();i++){
-            //add the current element value to the sum variable
-            sum+=nums[i];
-            //replace the current old element value by the new sum one
-            nums[i]=sum;
+        for(int i=1;i<nums.size();i++){
+            //replace the current old element value by the sum of the previous & the cuurent
+            nums[i]+=nums[i-1];
         }
         
         //return the new elements value of the array
