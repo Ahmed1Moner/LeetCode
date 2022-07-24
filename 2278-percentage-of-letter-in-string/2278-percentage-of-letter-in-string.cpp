@@ -12,6 +12,6 @@ public:
                 counter++;
         
         //retun the percentage of its occurence
-        return (counter*100)/s.size();
+        return ((double)counter/(double)s.size())*100;
     }
 };
