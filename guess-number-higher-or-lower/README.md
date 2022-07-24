@@ -1,3 +1,4 @@
+[Discussion Post (created on 24/6/2022 at 20:1)](https://leetcode.com/problems/guess-number-higher-or-lower/discuss/2328407/With-Explanation-Comments%3A-Time%3A-0-ms-(100.00)-Space%3A-5.9-MB-(67.17))  
 <h2>  Guess Number Higher or Lower</h2><hr><div><p>We are playing the Guess Game. The game is as follows:</p>
 
 <p>I pick a number from <code>1</code> to <code>n</code>. You have to guess which number I picked.</p>
