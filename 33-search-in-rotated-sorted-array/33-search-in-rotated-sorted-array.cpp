@@ -7,7 +7,7 @@ public:
         //loop while the left pointer is before or on the same position as the right one
         while(left<=right){
             //the third pointer mid-> is exactly the middle element between the main two ones
-            int mid=left+(right-left)/2;
+            int mid=(right+left)/2;
             
             //base case: if the value is equal to the mid value-> return the mid position
             if(target==nums[mid])
