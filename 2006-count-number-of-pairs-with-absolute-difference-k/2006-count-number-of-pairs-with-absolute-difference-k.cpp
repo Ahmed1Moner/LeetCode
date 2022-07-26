@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int countKDifference(vector<int>& nums, int k) {
+
+        //initialize a counter variable
+        int counter=0;
+        
+        //loop over the whole array elements
+        for(int i=0;i<nums.size()-1;i++){
+            //loop again over them to compare
+            for(int j=i+1;j<nums.size();j++){
+                //condition 1: j is always smaller than i
+                if(i>=j)
+                    continue;
+                //condition 2: the difference between the two numbers equals the given k
+                if(abs(nums[i]-nums[j])==k)
+                    //all conditions are passed-> add the counter by one
+                    counter++;
+            }
+        }
+
+        //return the counter value
+        return counter;
+    }
+};
