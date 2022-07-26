@@ -6,9 +6,9 @@ public:
         int counter=0;
         
         //loop over the whole array elements
-        for(int i=0;i<nums.size();i++){
+        for(int i=0;i<nums.size()-1;i++){
             //loop again over them to compare
-            for(int j=0;j<nums.size();j++){
+            for(int j=i+1;j<nums.size();j++){
                 //condition 1: j is always smaller than i
                 if(i>=j)
                     continue;
