@@ -39,6 +39,6 @@ public:
         }
         
         //return the product of either the three max ones || the two smaller ones, negative value and with the first max one
-        return max(max1*max2*max3, min1*min2*max1);
+        return max((max1*max2*max3), (min1*min2*max1));
     }
 };
