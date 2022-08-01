@@ -3,7 +3,7 @@ public:
     bool threeConsecutiveOdds(vector<int>& arr) {
         
         //base case: few elements
-        if(arr.size()==0 || arr.size()==1 || arr.size()==2)
+        if(arr.size()<=2)
             return false;
         
         //loop over the whole array elements until the second last one
