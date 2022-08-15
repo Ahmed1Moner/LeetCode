@@ -18,7 +18,7 @@ public:
             return true;
         
         //if one of them is null-> return false
-        else if( (!p && q) || (p && !q))
+        else if(!p || !q)
             return false;
         
         //base case: if the value of each pointer aren't the same-> return false
@@ -26,6 +26,6 @@ public:
             return false;
         
         //return if the two right values are equals && the two left ones are the same
-        return isSameTree(p->right, q->right) && isSameTree(p->left, q->left);
+        return (isSameTree(p->right, q->right) && isSameTree(p->left, q->left));
     }
 };
