@@ -11,11 +11,6 @@
  */
 class Solution {
 public:
-    bool isSymmetric(TreeNode* root) {
-        
-        //recall the helper function with the left and the right nodes
-        return (isSymmetricHelp(root->left, root->right));
-    }
     
     bool isSymmetricHelp(TreeNode *left, TreeNode *right){
         
@@ -30,6 +25,12 @@ public:
         //recursively, move to the left of the first pointer while to the right with the second one & vice versa
         return (isSymmetricHelp(left->left, right->right) && isSymmetricHelp(left->right, right->left));
         
+    }
+    
+    bool isSymmetric(TreeNode* root) {
+        
+        //recall the helper function with the left and the right nodes
+        return (isSymmetricHelp(root->left, root->right));
     }
 };
 
