@@ -14,9 +14,6 @@ public:
     bool checkTree(TreeNode* root) {
         
         //check if the left & the right values equals the main root value
-        if((root->left->val + root->right->val) == root->val)
-            return true;
-        else
-            return false;
+        return root->val == root->left->val + root->right->val;
     }
 };
