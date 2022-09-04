@@ -11,17 +11,32 @@ public:
         //initialize a zeros counter
         int counter=0;
         
-        //loop only over the 5s and their divider digits of the number
-        for(int i=5;i<=n;i+=5){
-            //loop again over them to calclulate each one trailing zeros, by checking of their remainder by dividing over 5
-            int x=i;
-            while(x>0 && x%5==0){
-                counter++;
-                x/=5;
-            }
+        //loop over the whole number starting from 0
+        for(int i=0;i<=n;i++){
+            //divided the number by 5
+            n/=5;
+            //add the counter by the resultant value
+            counter+=n;
         }
         
         //return the final number of zeros
         return counter;
     }
 };
+
+
+//         //initialize a zeros counter
+//         int counter=0;
+        
+//         //loop only over the 5s and their divider digits of the number
+//         for(int i=5;i<=n;i+=5){
+//             //loop again over them to calclulate each one trailing zeros, by checking of their remainder by dividing over 5
+//             int x=i;
+//             while(x>0 && x%5==0){
+//                 counter++;
+//                 x/=5;
+//             }
+//         }
+        
+//         //return the final number of zeros
+//         return counter;
