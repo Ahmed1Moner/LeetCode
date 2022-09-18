@@ -7,7 +7,7 @@ public:
         if odd-> return its double value, to be even & divisible by the two values
         */
         
-        return n*(n%2+1);
+        return n%2==0 ? n : n*2;
         
     }
 };
