@@ -1,26 +1,25 @@
 class Solution {
 public:
-    
-    int helper(vector<int>& dp, vector<int>& cost, int i){
-        
-        //base case 1: if the index=0|1 -> save its value to the same position in the new array
-        if(i<=1)
-            return dp[i]=cost[i];
-        
-        //base case 2: if the position reached before-> return its result immediately
-        if(dp[i]!=-1)
-            return dp[i];
-        
-        //the current position will be the min of the last two ones + the value of the old array
-        return dp[i]=cost[i]+min(helper(dp, cost, i-1), helper(dp, cost, i-2));
-    }
-    
     int minCostClimbingStairs(vector<int>& cost) {
         
-        //initialize a new vector with initial values of -1s
-        vector<int> dp(cost.size()+1, -1);
+        //initialize two variables-> previous element & seconde previous one
+        int prev1=0, prev2=0;
         
-        //call the helper function with the last two elements in the array & compare and return the minimum value
-        return min(helper(dp, cost, cost.size()-1), helper(dp, cost, cost.size()-2));
+        //loop over the whole array elements
+        for(int i=2;i<=cost.size();i++){
+            
+            //if you'll jump only one step-> add the last element value to the previous value
+            int jump1=prev1+cost[i-1];
+            //if you'll jump two steps-> add the second last element value to the second previous value
+            int jump2=prev2+cost[i-2];
+            
+            //save the previous value to the second variable
+            prev2=prev1;
+            //store the minimum value between the two jumps in the previous one
+            prev1=min(jump1, jump2);
+        }
+        
+        //return the previous one value
+        return prev1;
     }
 };
