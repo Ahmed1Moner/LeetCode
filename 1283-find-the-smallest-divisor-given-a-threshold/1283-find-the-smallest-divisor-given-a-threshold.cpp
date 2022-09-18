@@ -14,15 +14,9 @@ public:
             int mid=left+(right-left)/2, sum=0;
             
             //loop over the whole array element each time
-            for(int num:nums){
-                //check if the current element is divisble by the selected divisor
-                if(num%mid==0)
-                    //if yes-> add the divisor value to the sum variable
-                    sum+=(num/mid);
-                else
-                    //if no-> add one to the result
-                    sum+=(num/mid)+1;
-            }
+            for(int num:nums)
+                //use this formula, ceil division-> add the divisor value to the sum variable
+                sum+=(num+mid-1)/mid;
         
             //then, check if the final sum is greater than the given threshold-> divisor is still small
             if(sum>threshold)
