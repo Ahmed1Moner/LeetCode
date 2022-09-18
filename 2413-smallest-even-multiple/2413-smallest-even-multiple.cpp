@@ -2,17 +2,14 @@ class Solution {
 public:
     int smallestEvenMultiple(int n) {
         
-        //loop over the whole integer values
-        for(int i=1;i<=INT_MAX;i++)
-            
-            //check first if the current value is divisible by 2
-            if(i%2==0)
-                //if yes-> then, check if it's divisible by the given n, too
-                if(i%n==0)
-                    //if yes-> return the valid i value
-                    return i;
+        //check if the given value is an even one
+        if(n%2==0)
+            //return it-> divisible by 2 & itself
+            return n;
         
-        //if no, for both two conditions-> return 0
-        return 0;
+        else
+            //if odd-> return its double value, to be even & divisible by the two values
+            return 2*n;
+        
     }
 };
