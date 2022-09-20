@@ -2,23 +2,34 @@ class Solution {
 public:
     int numSubarrayBoundedMax(vector<int>& nums, int left, int right) {
         
-        //initialize a counter & two pointers for the boundaries
-        int counter=0, start=-1, end=-1;
+        //initialize a counter & two pointers
+        int counter=0, j=0, k=0;
         
         for(int i=0;i<nums.size();i++){
             
-            //move the end pointer to the position of the next invalid number
-            if(nums[i]>right)
-                end=i;
-            //move the start pointer to the position of the first valid number
-            if(nums[i]>=left)
-                start=i;
-            
-            //subtract the two ones to get the distance, number of valid values, between the two poiters & add it to the counter
-            counter+=start-end;
+            //case 1: if the current value is smaller than the bound
+            if(nums[i]<left){
+                //add the third pointer value to the counter
+                counter+=k;
+            }
+            //case 2: if the current value is bigger than the bound
+            else if(nums[i]>right){
+                //return the third pointer to its initial position again
+                k=0;
+                //move the second pointer in the next position of the first one
+                j=i+1;
+            }
+            //case 3: if the current value is in the bound
+            else{
+                //move the third position in the middle position
+                k=(i-j+1);
+                //add the third pointer value to the counter
+                counter+=k;
+            }
+        
         }
         
-        //return the final counter value
+        //return the final value of the counter
         return counter;
     }
 };
