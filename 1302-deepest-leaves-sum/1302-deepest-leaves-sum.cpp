@@ -13,48 +13,45 @@ class Solution {
 public:
     int deepestLeavesSum(TreeNode* root) {
         
-        //initialize sum & maximum deapth variables, store in it the returned value from the helper function 1 
-        int sum=0;
-        int maxDepth=getDepth(root);
-        
-        //call the helper function 2 which updates the sum variable 
-        dfs(root, sum, maxDepth, 1);
-        
-        //return the final sum value
-        return sum;
-        
-    }
-    
-    //helper function 1 to get the depth of the tree
-    int getDepth(TreeNode* root){
-        
         //base case 1
         if(!root)
             return 0;
         
-        //get the maximum possible depth in the tree
-        return 1 + max(getDepth(root->left), getDepth(root->right));
-    }
-    
-    //helper function 2 to traverse deapthly in the tree until the max deapth
-    void dfs(TreeNode* root, int& sum, int& maxDepth, int currDepth){
+        //initialize a queue
+        queue<TreeNode*> q;
+        q.push(root);
+        int levelSum=0;
         
-        //base case 2
-        if(!root)
-            return;
-        
-        //base case 3: if the current deapth/iterator == the calculated maximum one
-        if(currDepth == maxDepth){
+        //loop until the queue get empty
+        while(!q.empty()){
             
-            //add the node value to the sum variable
-            sum+=root->val;
-            return;
+            //with each loop, return the sum value back to the deafault one
+            levelSum=0;
+            int size=q.size();
+
+            //loop again for level by level
+            for(int i=0;i<size;i++){
+                
+                //save the current queue element's value
+                auto root=q.front();
+                //remove the current element
+                q.pop();
+
+                //add the current level nodes values
+                levelSum+=root->val;
+                
+                //if the current node have a left node
+                if(root->left)
+                    //add it to the queue
+                    q.push(root->left);
+                //if the current node have a left node
+                if(root->right)
+                    //add it to the queue
+                    q.push(root->right);
+            }
         }
         
-        //recursively, move in the deapth of the current node either to the left or the right & add the current deapth by one
-        dfs(root->left, sum, maxDepth, currDepth+1);
-        dfs(root->right, sum, maxDepth, currDepth+1);
-        
-        return;
+        //return the last level nodes' values
+        return levelSum;
     }
 };
