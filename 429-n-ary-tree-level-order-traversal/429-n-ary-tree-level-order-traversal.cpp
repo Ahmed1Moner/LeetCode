@@ -42,18 +42,18 @@ public:
             //loop again level by level in the queue
             while(size-- >0){
                 
+                //push the current nodes' values in the temporary vector
+                temp.push_back(q.front()->val);   
                 //save the current queue element's value
                 auto root=q.front();
                 //remove the current element
                 q.pop();
-                //push the current nodes' values in the temporary vector
-                temp.push_back(root->val);
+
                 
                 //loop over the current node's childrens 
                 for(auto c:root->children)
                     //add them to the queue
                     q.push(c);
-                
             }
             
             //push the temp vector results in the big one for each loop
