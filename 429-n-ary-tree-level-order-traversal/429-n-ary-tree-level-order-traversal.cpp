@@ -21,47 +21,29 @@ public:
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
-        
-        //base case 1
-        if(!root)
-            return{};
-        
-        //initialize a queue
+        vector<vector<int>> ans;
+        if(root == NULL){
+            return ans;
+        }
         queue<Node*> q;
         q.push(root);
-        //initalize a big vector for final result, vector of vectors of integers
-        vector<vector<int>> res;
-        
-        //loop until the queue gets empty
         while(!q.empty()){
-            
-            //initalize a small temporary vector
             vector<int> temp;
-            int size=q.size();
-    
-            //loop again level by level in the queue
-            while(size-- >0){
+            int s = q.size();
+            
+            for(int i = 0; i < s; i++){
+                temp.push_back(q.front()->val);
                 
-                //push the current nodes' values in the temporary vector
-                temp.push_back(q.front()->val);   
-                //save the current queue element's value
-                auto root=q.front();
-                //remove the current element
+                Node* temp = q.front();
                 q.pop();
-
                 
-                //loop over the current node's childrens 
-                for(auto c:root->children)
-                    //add them to the queue
-                    q.push(c);
+                for(Node* child : temp->children)
+                q.push(child);
             }
-            
-            //push the temp vector results in the big one for each loop
-            res.push_back(temp);
-            
+            ans.push_back(temp);
         }
+        return ans;
         
-        //return the final vector values
-        return res;
+        
     }
 };
