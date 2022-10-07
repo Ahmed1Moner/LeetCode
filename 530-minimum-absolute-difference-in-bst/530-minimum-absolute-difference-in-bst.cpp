@@ -12,36 +12,26 @@
 class Solution {
 public:
     
-    void helper(TreeNode* root, vector<int> &res){
+    int diff=INT_MAX, val=-1;
+        
+    int getMinimumDifference(TreeNode* root) {
+        
         
         //base case 1
         if(!root)
-            return;
+            return 0;
         
         //in-order tree traversal
         
         if(root->left)
-            helper(root->left, res);
+            getMinimumDifference(root->left);
         
-        res.push_back(root->val);
+        if(val!=-1)
+            diff=min(diff, abs(root->val-val));
+        val=root->val;
         
         if(root->right)
-            helper(root->right, res);
-    }
-    
-    
-    int getMinimumDifference(TreeNode* root) {
-        
-        int diff=INT_MAX;
-        vector<int> res;
-        
-        //recursively, call the helper function to traverse the tree inorder
-        helper(root, res);
-        
-        //then, loop over the whole array elements
-        for(int i=0;i<res.size()-1;i++)
-            //compate & update the difference value with the minimum between the old one & the diff between the current two ones
-            diff=min(diff, res[i+1]-res[i]);
+            getMinimumDifference(root->right);
         
         
         //return the minimum possible difference value
