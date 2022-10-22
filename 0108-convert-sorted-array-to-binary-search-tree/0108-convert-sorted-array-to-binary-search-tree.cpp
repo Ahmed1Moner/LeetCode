@@ -11,6 +11,12 @@
  */
 class Solution {
 public:
+        
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        
+        //call the helper function from its start to the end
+        return helper(nums, 0, nums.size()-1);   
+    }
     
     //helper function to binary search / divide and conquer
     TreeNode* helper(vector<int>& nums, int left, int right){
@@ -31,12 +37,6 @@ public:
         
         //return the tree
         return root;
-    }
-    
-    TreeNode* sortedArrayToBST(vector<int>& nums) {
-        
-        //call the helper function from its start to the end
-        return helper(nums, 0, nums.size()-1);   
     }
     
 };
