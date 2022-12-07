@@ -2,21 +2,16 @@ class Solution {
 public:
     char findTheDifference(string s, string t) {
         
-        //initialize a map
-        unordered_map<char, int> mp;
+        //sort the two strings
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
         
-        //loop over the whole string s's letters
-        for(auto item:s)
-            //add a value in its map
-            mp[item]++;
-        
-        //loop again over the whole string t's letters
-        for(auto item:t)
-            
-            //check if after decremeanting the value of the letter is a negative value-> the letter doesn't added before
-            if(--mp[item]<0)
+        //loop over the two string at the same time
+        for(int i=0;i<t.size();i++)
+            //once you find a different letter
+            if(s[i]!=t[i])
                 //return it
-                return item;
+                return t[i];
         
         //else-> return 0 as a string
         return '0';
