@@ -11,43 +11,42 @@
  */
 class Solution {
 public:
-    
-    void helper(TreeNode* root, vector<string>& ans, string curr){
-        
-        //empty tree
-        if(!root)
-            return;
-        
-        //if the current node has either left or right nodes, not a leaf node
-        if(root->left || root->right)
-            //add its value as a string & concatinate with the arrow symbol
-            curr+=to_string(root->val)+="->";
-
-        //if a leaf node
-        else{
-            //add without concatination
-            curr+=to_string(root->val);
-            //& push to the answer vector
-            ans.push_back(curr);
-        }
-        
-        //recursivelly, call the current root node with its left and its right nodes or sub-tree
-        helper(root->left, ans, curr);
-        helper(root->right, ans, curr);
-        
-    }
-    
     vector<string> binaryTreePaths(TreeNode* root) {
         
         //initialize a vector of string
         vector<string> ans;
-        //current string
-        string curr="";
+        //initialize a stack of tree & string values
+        stack<pair<TreeNode*, string>> st;
+        //initial values of the main root node & empty string
+        st.push({root, ""});
         
-        //call the helper function
-        helper(root, ans, curr);
+        //loop until the stack gets empty
+        while(!st.empty()){
+            
+            //temp current node-> key of the pair of the top of the stack
+            TreeNode* currNode=st.top().first;
+            //temp current string path-> value of the pair of the top of the stack
+            string currPath=st.top().second;
+            //pop the top
+            st.pop();
+            
+            //add the current path by the string of the current node value
+            currPath+=to_string(currNode->val);
+                
+            //case 1: if a leaf node-> push it in the answer vector
+            if(currNode->left==NULL && currNode->right==NULL)
+                ans.push_back(currPath);
+            
+            //case 2: if it still have left nodes-> add them in the stack + the arraw symbol
+            if(currNode->left)
+                st.push({currNode->left, currPath+"->"});
+            
+            //case 3: if it still have right nodes-> add them in the stack + the arraw symbol
+            if(currNode->right)
+                st.push({currNode->right, currPath+"->"});
+        }
+        
         //return the final vector content
         return ans;
-        
     }
 };
