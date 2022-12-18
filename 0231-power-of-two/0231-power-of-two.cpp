@@ -6,11 +6,7 @@ public:
         if(n==0)
             return false;
         
-        //loop & divide the value by 2 while the result is integer
-        while(n%2==0)
-            n/=2;
-        
-        //true if the last result is 1
-        return n==1;
+        //true if the number is divisable by 2 & the last reached value =1
+        return ((n==1)||(isPowerOfTwo(n/2)==1 && (n%2==0)));
     }
 };
