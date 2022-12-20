@@ -1,13 +1,15 @@
 class Solution {
 public:
     
-    void backtrack(vector<int>& candidates, set<vector<int>>& ans, vector<int>& nums, int target, int sum, int i){
+    void backtrack(vector<int>& candidates, vector<vector<int>>& ans, vector<int>& nums, int target, int sum, int i){
         
+        //base case 1: if the sum exceeded the target-> backtrack
         if(sum>target)
             return;
         
+        //base case 2: if the sum equals to the target-> save in the set & backtrack
         if(target==sum){
-            ans.insert(nums);
+            ans.push_back(nums);
             return;
         }
         
@@ -24,14 +26,12 @@ public:
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         
-        set<vector<int>> ans;
+        vector<vector<int>> ans;
         vector<int> nums;
         
         backtrack(candidates, ans, nums, target, 0, 0);
         
-        
-        
-        return vector<vector<int>> (ans.begin(), ans.end());
+        return ans;
     }
 };
 
