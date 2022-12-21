@@ -1,9 +1,9 @@
 class Solution {
 public:
     
-    void backtrack(vector<int>& nums, set<vector<int>>& ans, vector<int>& temp, int i){
+    void backtrack(vector<int>& nums, vector<vector<int>>& ans, vector<int>& temp, int i){
         //base case
-        ans.insert(temp);
+        ans.push_back(temp);
         
         for(int j=i;j<nums.size();j++){
             
@@ -16,12 +16,12 @@ public:
     
     vector<vector<int>> subsets(vector<int>& nums) {
         
-        set<vector<int>> ans;
+        vector<vector<int>> ans;
         vector<int> temp;
         
         backtrack(nums, ans, temp, 0);
         
-        return vector<vector<int>> (ans.begin(), ans.end());
+        return ans;
     }
 };
 
