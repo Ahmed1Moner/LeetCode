@@ -1,25 +1,33 @@
 class Solution {
 public:
     
-    int helper(long n, int counter){
+    //initialize a map
+    map<int, int> dp;
+    
+    long helper(long n){
         
-        //base case, if we reaches 1-> return the counter value
+        //base case, if we reaches 1-> return the counter value in the map
         if(n==1)
-            return counter;
+            return dp[n];
         
-        //case 1: even number
-        if(n%2==0)
-            return helper(n/2, counter+1);
+        //check if the number calculated already or not
+        if(dp[n]==NULL){
+            
+            //case 1: even number
+            if(n%2==0)
+                dp[n]=1+helper(n/2);
+          //case 2: odd number
+            else
+                dp[n]=1+min(helper(n+1), helper(n-1));
+        }
         
-        //case 2: odd number
-        else
-            return min(helper(n+1, counter+1), helper(n-1, counter+1));
-        
+        //if yes-> return it
+        return dp[n];
     }
     
     int integerReplacement(int n) {
         
         //call the helper function with initial value of 0 for counter
-        return helper(n, 0);
+        return helper(n);
     }
 };
