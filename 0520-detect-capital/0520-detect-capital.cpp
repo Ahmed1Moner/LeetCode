@@ -12,7 +12,7 @@ public:
                     return false;;
         }
         
-        else if(islower(word[0]) || islower(word[1])){
+        else {
             for(int i=1;i<word.size();i++)
                 
                 if(isupper(word[i]))
