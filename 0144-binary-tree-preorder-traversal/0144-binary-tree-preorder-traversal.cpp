@@ -11,41 +11,30 @@
  */
 class Solution {
 public:
-vector<int> preorderTraversal(TreeNode* root) {
-
-		//using iteration & single stack & vector
-    //if the tree's empty-> return null
-    if(!root){
-        return {};
+    
+    void helper(vector<int> &res, TreeNode* root){
+        
+        //base case-> if the tree's empty, return the empty vector
+        if(!root)
+            return;
+        
+        //push the current node value
+        res.push_back(root->val);
+        //call the fuction with its left sub-tree
+        helper(res, root->left);
+        //call the fuction with its right sub-tree
+        helper(res, root->right);
+        
     }
     
-    // & a stack to push the elements with the order I need in a vetor
-    stack<TreeNode*> st;
-    //initialize a vector to store in the ordered elements
-    vector<int> res;
-
-    //loop until finishing the tree elements & the stack isn't empty
-    while(root || !st.empty()){
-        //if I have a root node-> push it in the stack & move to the left sub-tree
-        //the case that stops this condition when the root points on null after the last left node
-        if(root){
-            //first, add the current root value to the vector
-            res.push_back(root->val);
-            st.push(root);
-            root=root->left;
-        }
-        //if I don't have a root node-> put the current node value in the vector
-        // & pop the current elmenet & move to the right sub-tree
-        else{
-            //since that it points on null to stop the above condition-> return it back to the topper element in the stack
-            root=st.top();
-            //delete the current added element from the stack
-            st.pop();
-            //move to the right sub-tree
-            root=root->right;
-        }
+    
+    vector<int> preorderTraversal(TreeNode* root) {
+        
+        //initialize a vector
+        vector<int> res;
+        //call the helper function
+        helper(res, root);
+        //return the vector elements
+        return res;
     }
-    //return the vector elements
-    return res;
-}
 };
