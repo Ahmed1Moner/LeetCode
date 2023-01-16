@@ -1,36 +1,21 @@
 class Solution {
 public:
-    
-    int dp[10000+1];
-    
-    bool helper(vector<int> &nums, int size, int i){
-        
-        //base case 1: if the pointer reaches the last element-> true
-        if(i==size-1)
-            return true;
-        //base case 2: if the pointer exceed the last element-> false
-        if(i>size-1)
-            return false;
-        //base case 3: if we visit & decide if it's valid or not-> return the decision
-        if(dp[i]!=-1)
-            return dp[i];
-        
-        //at each position, we can move from [1, nums[i]] steps
-        for(int j=1;j<=nums[i];j++)
-            //if we reach the last elements through the base case-> true & save it
-            if(helper(nums, size, i+j))
-                return dp[i]=true;
-        
-        //else-> false & save it
-        return dp[i]=false;
-    }
-    
     bool canJump(vector<int>& nums) {
         
-        //make all the dp array's elements = -1
-        memset(dp, -1, sizeof(dp));
+        //save the current index each time
+        int index=nums.size()-1;
         
-        //call the helper function starting with the first position
-        return helper(nums, nums.size(), 0);
+        //loop over the whole elements from the end to the start
+        for(int i=nums.size()-1;i!=0;i--)
+            
+            //if the next element, previous one in reverse, + its value can exceed the saved index-> update the saved index with it
+            if(i-1+nums[i-1]>=index)
+                index=i-1;
+        
+        //if the index pointer reaches the end of the vector-> true
+        if(index==0)
+            return true;
+        //else-> false
+        return false;
     }
 };
